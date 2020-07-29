@@ -100,10 +100,10 @@ export default class App extends Component {
           )}
         </div>
 
-        {gameOver || gameWon &&
-	        <h2 className="ms-message">
+        {gameOver || gameWon 
+        	? <h2 className="ms-message">
 		        {gameOver ? "Game over ☹" : "Nice job!"}
-	        </h2>
+	        </h2> : ""
         }
       </div>
     );
