@@ -13,7 +13,8 @@ export default class App extends Component {
     this.state = {
       tiles: defaultTiles,
       mineCount: 10,
-      debug: false
+      debug: false,
+      gameOver: false
     };
   }
 
@@ -39,8 +40,21 @@ export default class App extends Component {
     this.addMines();
   }
 
+  handleClick(tile, i) {
+  	const {tiles} = this.state;
+  	let updatedTiles = tiles;
+
+  	updatedTiles[i].clicked = true;
+
+  	if (updatedTiles[i].mine) {
+  		this.setState({gameOver: true});
+  	}
+
+  	this.setState({tiles: updatedTiles});
+  }
+
   render() {
-    const {debug, tiles} = this.state;
+    const {debug, gameOver, tiles} = this.state;
 
     // console.log(tiles);
     // console.log(tiles.filter(t => t.mine === true));
@@ -51,11 +65,18 @@ export default class App extends Component {
       <div className="ms">
         <div className="ms-grid">
           {tiles.map((tile, i) =>
-            <button className="ms-tile" key={`${tile.row} : ${tile.col}`}>
+            <button 
+            	className="ms-tile"
+            	onClick={() => this.handleClick(tile, i)}
+            	key={`${tile.row} : ${tile.col}`}
+            >
               <span className={debug ? "" : "u-visually-hidden"}>
                 row {tile.row}, column {tile.col}, {tile.clicked ? 'clicked' : 'unclicked'}
               </span>
-              {tile.mine ? '💣' : ''}
+              {tile.mine 
+              	? tile.clicked || gameOver ? '💥' : '💣' 
+              	: ''
+              }
             </button>
           )}
         </div>
