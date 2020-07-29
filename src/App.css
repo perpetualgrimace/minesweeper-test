@@ -47,6 +47,14 @@ body {
 	outline: 2px solid cornflower;
 }
 
+.ms-tile-flag {
+	color: black !important;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
 .ms-message {
 	position: absolute;
 	left: 0;

@@ -179,6 +179,19 @@ export default class App extends Component {
   	this.setState({tiles: updatedTiles});
   }
 
+  handleRightClick(e, tile, i) {
+
+  	const {gameOver, gameWon, tiles} = this.state;
+  	let updatedTiles = tiles;
+
+  	e.preventDefault();
+
+    if (!gameOver && !gameWon) {
+      updatedTiles[i].flagged = true;
+      this.setState({tiles: updatedTiles});
+    }
+  }
+
   checkWinState(tiles) {
   	const {mineCount} = this.state;
   	const unclickedTiles = tiles.filter(tile => tile.clicked === false);
@@ -208,6 +221,7 @@ export default class App extends Component {
           	<button 
             	className={`ms-tile${tile.clicked ? ' is-clicked' : ''}`}
             	onClick={gameOver || gameWon ? null : () => this.handleClick(tile, i)}
+            	onContextMenu={e => this.handleRightClick(e, tile, i)}
             	key={`${tile.row} : ${tile.col}`}
             	autoFocus={i === 0}
             >
@@ -217,6 +231,9 @@ export default class App extends Component {
               {tile.mine 
               	? tile.clicked || gameOver ? '💥' : '💣' 
               	: tile.adjacentMines > 0 ? tile.adjacentMines : ''
+              }
+              {(tile.flagged && !tile.clicked) &&
+              	<span className="ms-tile-flag">🚩</span>
               }
             </button>
           )}
