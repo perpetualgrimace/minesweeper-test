@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
+
+import defaultTiles from './defaultTiles.json';
 import './App.css';
 
-function App() {
-  return (
-    <div className="ms">
-      <h1>Test</h1>
-    </div>
-  );
-}
+export default class App extends Component {
+  render() {
+    // console.log(defaultTiles);
 
-export default App;
+    return (
+      <div className="ms">
+        <h1>Now I'm classy</h1>
+      </div>
+    );
+  }
+}
