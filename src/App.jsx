@@ -14,7 +14,8 @@ export default class App extends Component {
       tiles: defaultTiles,
       mineCount: 10,
       debug: false,
-      gameOver: false
+      gameOver: false,
+      gameWon: false
     };
   }
 
@@ -50,11 +51,26 @@ export default class App extends Component {
   		this.setState({gameOver: true});
   	}
 
+  	else if (this.checkWinState(updatedTiles) === true) {
+  		this.setState({gameWon: true});
+  	}
+
   	this.setState({tiles: updatedTiles});
   }
 
+  checkWinState(tiles) {
+  	const {mineCount} = this.state;
+  	const unclickedTiles = tiles.filter(tile => tile.clicked === false);
+
+  	if (unclickedTiles.length === mineCount) {
+  		return true;
+  	}
+
+  	return false;
+  }
+
   render() {
-    const {debug, gameOver, tiles} = this.state;
+    const {debug, gameOver, gameWon, tiles} = this.state;
 
     // console.log(tiles);
     // console.log(tiles.filter(t => t.mine === true));
@@ -63,9 +79,12 @@ export default class App extends Component {
 
     return (
       <div className="ms">
+
+      	<h1 className="u-visually-hidden">James Ferrell's attempt at recreating Minesweeper in React</h1>
+
         <div className="ms-grid">
           {tiles.map((tile, i) =>
-            <button 
+          	<button 
             	className={`ms-tile${tile.clicked ? ' is-clicked' : ''}`}
             	onClick={() => this.handleClick(tile, i)}
             	key={`${tile.row} : ${tile.col}`}
@@ -80,6 +99,12 @@ export default class App extends Component {
             </button>
           )}
         </div>
+
+        {gameOver || gameWon &&
+	        <h2 className="ms-message">
+		        {gameOver ? "Game over ☹" : "Nice job!"}
+	        </h2>
+        }
       </div>
     );
   }
