@@ -66,7 +66,7 @@ export default class App extends Component {
         <div className="ms-grid">
           {tiles.map((tile, i) =>
             <button 
-            	className="ms-tile"
+            	className={`ms-tile${tile.clicked ? ' is-clicked' : ''}`}
             	onClick={() => this.handleClick(tile, i)}
             	key={`${tile.row} : ${tile.col}`}
             >
