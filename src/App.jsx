@@ -210,9 +210,10 @@ export default class App extends Component {
             	className={`ms-tile${tile.clicked ? ' is-clicked' : ''}`}
             	onClick={() => this.handleClick(tile, i)}
             	key={`${tile.row} : ${tile.col}`}
+            	autoFocus={i === 0}
             >
               <span className={debug ? '' : 'u-visually-hidden'}>
-                row {tile.row}, column {tile.col}, {tile.clicked ? 'clicked' : 'unclicked'}
+                row {tile.row}, column {tile.col}, {tile.clicked ? `clicked, ${tile.adjacentMines} adjacent mines` : 'unclicked'}, 
               </span>
               {tile.mine 
               	? tile.clicked || gameOver ? '💥' : '💣' 

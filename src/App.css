@@ -38,10 +38,16 @@ body {
 	border: 1px solid gray;
 }
 
+.ms-tile:focus {
+	z-index: 1;
+	outline: 2px solid cornflower;
+}
+
 .ms-message {
 	position: absolute;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	text-align: center;
+	padding-bottom: 1em;
 }
