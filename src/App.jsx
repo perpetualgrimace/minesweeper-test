@@ -96,6 +96,63 @@ export default class App extends Component {
   	})
   }
 
+  revealAdjacentTiles(tile) {
+  	const {tiles} = this.state;
+  	let updatedTiles = tiles;
+
+		// direct left
+		if (tile.col !== 0 && this.findTile(tile.row, tile.col - 1).mine === false) {
+			this.findTile(tile.row, tile.col - 1).clicked = true;
+			// this.revealAdjacentTiles(this.findTile(tile.row, tile.col - 1));
+		}
+		
+		// direct right
+		if (tile.col !== 8 && this.findTile(tile.row, tile.col + 1).mine === false) {
+			this.findTile(tile.row, tile.col + 1).clicked = true;
+			// this.revealAdjacentTiles(this.findTile(tile.row, tile.col + 1));
+		}
+
+		// above row
+		if (tile.row !== 0) {
+			// above left
+			if (tile.col !== 0 && this.findTile(tile.row - 1, tile.col - 1).mine === false) {
+				this.findTile(tile.row - 1, tile.col - 1).clicked = true;
+				// this.revealAdjacentTiles(this.findTile(tile.row - 1, tile.col - 1));
+			}
+			// above center
+			if (this.findTile(tile.row - 1, tile.col).mine === false) {
+				this.findTile(tile.row - 1, tile.col).clicked = true;
+				// this.revealAdjacentTiles(this.findTile(tile.row - 1, tile.col));
+			}
+			// above right
+			if (tile.col !== 8 && this.findTile(tile.row - 1, tile.col + 1).mine === false) {
+				this.findTile(tile.row - 1, tile.col + 1).clicked = true;
+				// this.revealAdjacentTiles(this.findTile(tile.row - 1, tile.col + 1));
+			}
+		}
+
+		// below row
+		if (tile.row !== 8) {
+			// below left
+			if (tile.col !== 0 && this.findTile(tile.row + 1, tile.col - 1).mine === false) {
+				this.findTile(tile.row + 1, tile.col - 1).clicked = true;
+				// this.revealAdjacentTiles(this.findTile(tile.row + 1, tile.col - 1));
+			}
+			// below center
+			if (this.findTile(tile.row + 1, tile.col).mine === false) {
+				this.findTile(tile.row + 1, tile.col).clicked = true;
+				// this.revealAdjacentTiles(this.findTile(tile.row + 1, tile.col));
+			}
+			// below right
+			if (tile.col !== 8 && this.findTile(tile.row + 1, tile.col + 1).mine === false) {
+				this.findTile(tile.row + 1, tile.col + 1).clicked = true;
+				// this.revealAdjacentTiles(this.findTile(tile.row + 1, tile.col + 1));
+			}
+		}
+
+		this.setState({tiles: updatedTiles});
+  }
+
   componentDidMount() {
     this.addMines();
     this.countAdjacentMines();
@@ -111,9 +168,14 @@ export default class App extends Component {
   		this.setState({gameOver: true});
   	}
 
-  	else if (this.checkWinState(updatedTiles) === true) {
-  		this.setState({gameWon: true});
+  	else {
+  		this.revealAdjacentTiles(tile);
+
+	  	if (this.checkWinState(updatedTiles) === true) {
+	  		this.setState({gameWon: true});
+	  	}
   	}
+
 
   	this.setState({tiles: updatedTiles});
   }
