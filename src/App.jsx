@@ -184,6 +184,7 @@ export default class App extends Component {
   	const {gameOver, gameWon, tiles} = this.state;
   	let updatedTiles = tiles;
 
+    // prevent right click menu
   	e.preventDefault();
 
     if (!gameOver && !gameWon) {
@@ -204,7 +205,7 @@ export default class App extends Component {
   }
 
   render() {
-    const {gameOver, gameWon, tiles} = this.state;
+    const {gameOver, gameWon, mineCount, tiles} = this.state;
 
     // console.log(tiles);
     // console.log(tiles.filter(t => t.mine === true));
@@ -215,6 +216,10 @@ export default class App extends Component {
       <div className="ms">
 
       	<h1 className="u-visually-hidden">James Ferrell's attempt at recreating Minesweeper in React</h1>
+
+        <p className="ms-message">
+          Mines remaining: {mineCount}
+        </p>
 
         <div className="ms-grid">
           {tiles.map((tile, i) =>

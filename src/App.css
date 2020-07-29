@@ -42,6 +42,11 @@ body {
 	border: 1px solid gray;
 }
 
+/* no cheating */
+.ms-tile:not(.is-clicked) {
+	user-select: none;
+}
+
 .ms-tile:focus {
 	z-index: 1;
 	outline: 2px solid cornflower;
@@ -59,7 +64,12 @@ body {
 	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: 0;
 	text-align: center;
-	padding-bottom: 1em;
+}
+
+.ms-message:not(:last-child) {
+	top: 1em;
+}
+.ms-message:last-child {
+	bottom: 1em;
 }
