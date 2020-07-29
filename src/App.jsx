@@ -207,7 +207,7 @@ export default class App extends Component {
           {tiles.map((tile, i) =>
           	<button 
             	className={`ms-tile${tile.clicked ? ' is-clicked' : ''}`}
-            	onClick={() => this.handleClick(tile, i)}
+            	onClick={gameOver || gameWon ? null : () => this.handleClick(tile, i)}
             	key={`${tile.row} : ${tile.col}`}
             	autoFocus={i === 0}
             >
