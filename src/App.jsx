@@ -13,7 +13,7 @@ export default class App extends Component {
     this.state = {
       tiles: defaultTiles,
       mineCount: 10,
-      debug: true
+      debug: false
     };
   }
 

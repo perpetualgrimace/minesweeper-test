@@ -17,6 +17,13 @@ body {
 	display: grid;
 	grid-auto-rows: 10%;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	/* TODO: sizing */
 	width: 500px;
+	border: 1px solid lightgray;
+}
+
+/* it's a button */
+.ms-tile {
+	/* sizing */
+	min-width: 50px;
+	min-height: 50px;
 }
