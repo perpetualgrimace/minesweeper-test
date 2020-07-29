@@ -187,7 +187,7 @@ export default class App extends Component {
   	e.preventDefault();
 
     if (!gameOver && !gameWon) {
-      updatedTiles[i].flagged = true;
+      updatedTiles[i].flagged = !updatedTiles[i].flagged;
       this.setState({tiles: updatedTiles});
     }
   }
