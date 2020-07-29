@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 
 import defaultTiles from './defaultTiles.json';
+
+import './reset.css';
+import './utils.css';
 import './App.css';
 
 export default class App extends Component {
@@ -9,7 +12,8 @@ export default class App extends Component {
     super();
     this.state = {
       tiles: defaultTiles,
-      mineCount: 10
+      mineCount: 10,
+      debug: true
     };
   }
 
@@ -36,7 +40,7 @@ export default class App extends Component {
   }
 
   render() {
-    const {tiles} = this.state;
+    const {debug, tiles} = this.state;
 
     // console.log(tiles);
     // console.log(tiles.filter(t => t.mine === true));
@@ -48,8 +52,8 @@ export default class App extends Component {
         <div className="ms-grid">
           {tiles.map((tile, i) =>
             <button className="ms-tile" key={`${tile.row} : ${tile.col}`}>
-              <span className="u-visually-hidden">
-                {tile.row} : {tile.col}
+              <span className={debug ? "" : "u-visually-hidden"}>
+                row {tile.row}, column {tile.col}, {tile.clicked ? 'clicked' : 'unclicked'}
               </span>
               {tile.mine ? '💣' : ''}
             </button>

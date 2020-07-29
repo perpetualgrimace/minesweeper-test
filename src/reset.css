@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* responsive */
+img, textarea, svg {
+  max-width: 100%;
+}
+
+/* border box default */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* pos:rel all the things */
+body * {
+  position: relative;
+}
+
+/* Hide horizontal scroll bars. Just in case. */
+html, body {
+  width: 100%;
+}

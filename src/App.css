@@ -1,0 +1,22 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.ms {
+	/* allow grid to center itself */
+	display: flex;
+	min-height: 100vh;
+}
+
+.ms-grid {
+	/* center within parent */
+	margin: auto;
+	/* lay out tiles in a grid */
+	display: grid;
+	grid-auto-rows: 10%;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	/* TODO: sizing */
+	width: 500px;
+}
