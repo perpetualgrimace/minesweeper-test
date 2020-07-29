@@ -13,7 +13,6 @@ export default class App extends Component {
     this.state = {
       tiles: defaultTiles,
       mineCount: 10,
-      debug: false,
       gameOver: false,
       gameWon: false
     };
@@ -192,7 +191,7 @@ export default class App extends Component {
   }
 
   render() {
-    const {debug, gameOver, gameWon, tiles} = this.state;
+    const {gameOver, gameWon, tiles} = this.state;
 
     // console.log(tiles);
     // console.log(tiles.filter(t => t.mine === true));
@@ -212,7 +211,7 @@ export default class App extends Component {
             	key={`${tile.row} : ${tile.col}`}
             	autoFocus={i === 0}
             >
-              <span className={debug ? '' : 'u-visually-hidden'}>
+              <span className="u-visually-hidden">
                 row {tile.row}, column {tile.col}, {tile.clicked ? `clicked, ${tile.adjacentMines} adjacent mines` : 'unclicked'}, 
               </span>
               {tile.mine 

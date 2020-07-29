@@ -27,6 +27,7 @@ body {
 	min-width: 50px;
 	min-height: 50px;
 	font-size: 25px;
+	color: transparent;
 	border-width: 4px;
 	border-color: lightgray;
 	border-top-color: white;
@@ -34,6 +35,7 @@ body {
 }
 
 .ms-tile.is-clicked {
+	color: black;
 	background: lightgray;
 	border: 1px solid gray;
 }
